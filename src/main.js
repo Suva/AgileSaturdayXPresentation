@@ -14,6 +14,7 @@ require(["Colors"], function(Colors){
             specular: 0x666666
         })
     );
+    cube.position.z = -10;
     scene.add(cube);
 
     var light = new THREE.PointLight(
@@ -31,10 +32,6 @@ require(["Colors"], function(Colors){
     light2.position.y = -0;
     light2.position.z = 0;
     scene.add(light2)
-
-    camera.position.z = 10;
-    camera.position.y = 2;
-
 
     function createSurroundingCylinder() {
         (new THREE.JSONLoader()).load('objects/cylinder.js', function (geometry, materials) {
@@ -63,6 +60,7 @@ require(["Colors"], function(Colors){
         function render() {
             cube.rotation.x = x+=0.01;
             cube.rotation.z = x;
+            camera.rotation.y = x;
 
             if(false && cylinder){
                 cylinder.rotation.x = x;
@@ -76,7 +74,6 @@ require(["Colors"], function(Colors){
         }
         render();
     }
-
 
     function InitializeComposer() {
         var renderModel = new THREE.RenderPass(scene, camera);
@@ -101,7 +98,6 @@ require(["Colors"], function(Colors){
         var width = window.innerWidth;
         var height = width * (9 / 16);
         var position = (window.innerHeight - height) / 2;
-        console.log(position);
         renderer.setSize(width, height);
         $("canvas").css("margin-top", position + "px");
     }
