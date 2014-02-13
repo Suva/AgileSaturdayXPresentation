@@ -4,8 +4,6 @@ define(["Colors", "Keys", "SoundPlayer"], function(Colors, Keys, SoundPlayer){
     var isStarted = false;
     var mars = null;
 
-    var sound = SoundPlayer.load("sounds/demo-tech.mp3");
-
     var panelMaterial = new THREE.MeshBasicMaterial({
         map: THREE.ImageUtils.loadTexture("images/intro_image.png"),
         transparent: true,
@@ -52,12 +50,13 @@ define(["Colors", "Keys", "SoundPlayer"], function(Colors, Keys, SoundPlayer){
 
     function startAnimation() {
         isStarted = true;
-        sound.play();
+        SoundPlayer.play();
     }
 
     function handleKeyEvent(event){
+        console.log(event.keyCode);
         switch(event.keyCode){
-            case Keys.SPACE:
+            case Keys.PAGE_UP:
                 startAnimation();
                 break;
         }

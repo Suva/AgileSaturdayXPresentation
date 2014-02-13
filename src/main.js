@@ -1,4 +1,13 @@
-require(["Colors", "SlideScene", "IntroScene", "SoundPlayer"], function(Colors, SlideScene, IntroScene, SoundPlayer){
+require(["Colors", "SlideScene", "IntroScene", "SoundPlayer", "RoomScene"], function(
+    Colors,
+    SlideScene,
+    IntroScene,
+    SoundPlayer,
+    RoomScene
+) {
+    var scene = null;
+
+    SoundPlayer.load("sounds/demo-tech.mp3");
 
     var renderer = new THREE.WebGLRenderer( { antialias: false, clearAlpha: 1 } );
     renderer.autoClear = false;
@@ -9,11 +18,14 @@ require(["Colors", "SlideScene", "IntroScene", "SoundPlayer"], function(Colors, 
 
     resizeViewport();
 
+    var renderModel = new THREE.RenderPass();
+
 
     // var scene = SlideScene;
-    var scene = IntroScene;
+    // var scene = IntroScene;
+    setScene(IntroScene);
 
-    var renderModel = new THREE.RenderPass(scene.scene, scene.camera);
+    // SoundPlayer.play();
 
     var composer = InitializeComposer();
 
@@ -29,9 +41,10 @@ require(["Colors", "SlideScene", "IntroScene", "SoundPlayer"], function(Colors, 
             $("canvas").show();
             $("body").css("background", "black");
             $("#bsod").hide();
-            scene = SlideScene;
-            renderModel.scene = scene.scene;
-            renderModel.camera = scene.camera;
+            setScene(RoomScene);
+        }
+        if(bar == 49){
+            setScene(SlideScene);
         }
     });
 
@@ -74,4 +87,13 @@ require(["Colors", "SlideScene", "IntroScene", "SoundPlayer"], function(Colors, 
         renderer.setSize(width, height);
         $("canvas").css("margin-top", position + "px");
     }
+
+    function setScene(newScene) {
+        if(scene && scene.destruct) {scene.destruct()}
+        scene = newScene;
+        if(scene.init) {scene.init()}
+        renderModel.scene = scene.scene;
+        renderModel.camera = scene.camera;
+    }
+
 });

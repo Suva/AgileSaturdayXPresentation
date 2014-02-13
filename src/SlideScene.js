@@ -56,10 +56,10 @@ define(["Colors", "Slides", "Keys"], function(Colors, Slides, Keys){
 
     function handleKeyEvent(event){
         switch(event.keyCode){
-            case Keys.SPACE:
+            case Keys.PAGE_UP:
                 switchToNextSlide();
                 break;
-            case Keys.BACKSPACE:
+            case Keys.PAGE_DOWN:
                 switchToPreviousSlide();
                 break;
         }

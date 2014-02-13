@@ -1,6 +1,6 @@
 define([], function(){
     return {
-        "SPACE": 32,
-        "BACKSPACE": 8
+        "PAGE_UP": 34,
+        "PAGE_DOWN": 33
     };
 })
