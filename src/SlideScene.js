@@ -1,4 +1,4 @@
-define(["Colors", "Slides"], function(Colors, Slides){
+define(["Colors", "Slides", "Keys"], function(Colors, Slides, Keys){
     var scene = new THREE.Scene();
     var camera = new THREE.PerspectiveCamera( 75, window.screen.availWidth / window.screen.availHeight, 0.1, 1000);
     var frame = null;
@@ -55,14 +55,11 @@ define(["Colors", "Slides"], function(Colors, Slides){
     };
 
     function handleKeyEvent(event){
-        const KEY_SPACE = 32;
-        const KEY_BACKSPACE = 8;
-
         switch(event.keyCode){
-            case KEY_SPACE:
+            case Keys.SPACE:
                 switchToNextSlide();
                 break;
-            case KEY_BACKSPACE:
+            case Keys.BACKSPACE:
                 switchToPreviousSlide();
                 break;
         }

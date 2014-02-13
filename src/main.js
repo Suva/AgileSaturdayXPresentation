@@ -1,4 +1,4 @@
-require(["Colors", "SlideScene"], function(Colors, SlideScene){
+require(["Colors", "SlideScene", "IntroScene", "SoundPlayer"], function(Colors, SlideScene, IntroScene, SoundPlayer){
 
     var renderer = new THREE.WebGLRenderer( { antialias: false, clearAlpha: 1 } );
     renderer.autoClear = false;
@@ -10,20 +10,37 @@ require(["Colors", "SlideScene"], function(Colors, SlideScene){
     resizeViewport();
 
 
-    var scene = SlideScene;
+    // var scene = SlideScene;
+    var scene = IntroScene;
 
     var renderModel = new THREE.RenderPass(scene.scene, scene.camera);
 
     var composer = InitializeComposer();
 
-
     $("body").keyup(function(event){ scene.keyEvent(event); event.preventDefault(); });
+
+    SoundPlayer.addListener(function(bar){
+        if(bar == 16){
+            $("canvas").hide();
+            $("body").css("background", "#000082");
+            $("#bsod").show();
+        }
+        if(bar == 17){
+            $("canvas").show();
+            $("body").css("background", "black");
+            $("#bsod").hide();
+            scene = SlideScene;
+            renderModel.scene = scene.scene;
+            renderModel.camera = scene.camera;
+        }
+    });
 
     startRenderer();
 
     function startRenderer(){
         var x = 0;
         function render() {
+            SoundPlayer.update()
             scene.render();
             requestAnimationFrame(render);
             renderer.clear();
