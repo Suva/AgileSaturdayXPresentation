@@ -127,6 +127,7 @@ define(["SoundPlayer"], function(SoundSystem){
                     light.distance = distance + 2;
                 } else {
                     light2.intensity = intensity + 1;
+                    light2.distance = distance + 2;
                 }
             })
         },

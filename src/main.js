@@ -1,13 +1,22 @@
-require(["Colors", "SlideScene", "IntroScene", "SoundPlayer", "RoomScene"], function(
+require([
+    "Colors",
+    "SlideScene",
+    "IntroScene",
+    "SoundPlayer",
+    "RoomScene",
+    "CubeScrollerScene"
+], function(
     Colors,
     SlideScene,
     IntroScene,
     SoundPlayer,
-    RoomScene
+    RoomScene,
+    CubeScrollerScene
 ) {
     var scene = null;
 
     SoundPlayer.load("sounds/demo-tech.mp3");
+
 
     var renderer = new THREE.WebGLRenderer( { antialias: false, clearAlpha: 1 } );
     renderer.autoClear = false;
@@ -21,11 +30,8 @@ require(["Colors", "SlideScene", "IntroScene", "SoundPlayer", "RoomScene"], func
     var renderModel = new THREE.RenderPass();
 
 
-    // var scene = SlideScene;
-    // var scene = IntroScene;
     setScene(IntroScene);
 
-    // SoundPlayer.play();
 
     var composer = InitializeComposer();
 
@@ -42,6 +48,9 @@ require(["Colors", "SlideScene", "IntroScene", "SoundPlayer", "RoomScene"], func
             $("body").css("background", "black");
             $("#bsod").hide();
             setScene(RoomScene);
+        }
+        if(bar == 33){
+            setScene(CubeScrollerScene);
         }
         if(bar == 49){
             setScene(SlideScene);
