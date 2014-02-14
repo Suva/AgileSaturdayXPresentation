@@ -17,7 +17,6 @@ require([
 
     SoundPlayer.load("sounds/demo-tech.mp3");
 
-
     var renderer = new THREE.WebGLRenderer( { antialias: false, clearAlpha: 1 } );
     renderer.autoClear = false;
 
@@ -29,9 +28,7 @@ require([
 
     var renderModel = new THREE.RenderPass();
 
-
     setScene(IntroScene);
-
 
     var composer = InitializeComposer();
 
@@ -61,6 +58,7 @@ require([
 
     function startRenderer(){
         var x = 0;
+
         function render() {
             SoundPlayer.update()
             scene.render();

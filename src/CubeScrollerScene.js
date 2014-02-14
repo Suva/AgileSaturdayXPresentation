@@ -7,32 +7,22 @@ define(["SoundPlayer", "Colors", "Greetings"], function (SoundSystem, Colors, Gr
     camera.position.z = 1;
     camera.lookAt(new THREE.Vector3());
 
-    // Create cube grid
-
     var cubeWidth = 1.2;
     var screenHeight = 9;
-    var screenWidth = 200;
+    var screenWidth = 100;
     var cubes = [];
-
-    console.log(Greetings);
-
-
 
     var lightSystem = new THREE.Object3D();
     var light = new THREE.PointLight(0xAAAAFF, intensity, distance);
     light.position.z = -15;
 
-
     var light2 = new THREE.PointLight(0xAAAAFF, intensity, distance);
     light.position.z = 15;
-
 
     lightSystem.add(light);
     lightSystem.add(light2);
 
     scene.add(lightSystem);
-
-
 
     var litMaterial = new THREE.MeshBasicMaterial({
         color: Colors.orange
@@ -47,7 +37,7 @@ define(["SoundPlayer", "Colors", "Greetings"], function (SoundSystem, Colors, Gr
         cubes[y] = [];
         _.each(_.range(0, screenWidth), function(x){
             var cube = new THREE.Mesh(
-                new THREE.CubeGeometry(1, 1, 0.3),
+                new THREE.PlaneGeometry(1, 1),
                 Greetings[y][x] ? litMaterial : unlitMaterial
             );
 
@@ -85,7 +75,7 @@ define(["SoundPlayer", "Colors", "Greetings"], function (SoundSystem, Colors, Gr
             lightSystem.rotation.y += 0.01;
             lightSystem.rotation.x += 0.01;
 
-            cubeSystem.rotation.y = Math.sin(cubeSystemRotation += 0.005) * 0.6;
+            cubeSystem.rotation.y = Math.sin(cubeSystemRotation += 0.005) * 0.5;
             cubeSystem.rotation.x = Math.sin(cubeSystemTilt += 0.003) * 0.3;
 
         },
