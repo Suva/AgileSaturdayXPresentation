@@ -28,7 +28,7 @@ require([
 
     var renderModel = new THREE.RenderPass();
 
-    setScene(CubeScrollerScene);
+    setScene(IntroScene);
 
     var composer = InitializeComposer();
 
