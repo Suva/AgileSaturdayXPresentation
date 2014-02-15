@@ -37,7 +37,7 @@ define(["SoundPlayer", "Colors", "Greetings"], function (SoundSystem, Colors, Gr
         cubes[y] = [];
         _.each(_.range(0, screenWidth), function(x){
             var cube = new THREE.Mesh(
-                new THREE.PlaneGeometry(1, 1),
+                new THREE.CubeGeometry(1, 1, 0.3),
                 Greetings[y][x] ? litMaterial : unlitMaterial
             );
 
