@@ -71,16 +71,13 @@ require([
 
     function InitializeComposer() {
         var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
-        var effectFXAA = new THREE.ShaderPass(THREE.FXAAShader);
         var effectBloom = new THREE.BloomPass(1.3);
         var effectVignette = new THREE.ShaderPass(THREE.VignetteShader);
         var width = window.innerWidth || 2;
         var height = window.innerHeight || 2;
-        effectFXAA.uniforms[ 'resolution' ].value.set(1 / width, 1 / height);
         effectCopy.renderToScreen = true;
         var composer = new THREE.EffectComposer(renderer);
         composer.addPass(renderModel);
-        composer.addPass(effectFXAA);
         composer.addPass(effectBloom);
         composer.addPass(effectVignette);
         composer.addPass(effectCopy);
